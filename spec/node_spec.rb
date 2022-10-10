@@ -1,6 +1,6 @@
 # frozen_string_literal: false
 
-require './lib/coords'
+require './lib/node'
 
 describe Node do
   describe '#coords' do
