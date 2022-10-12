@@ -26,6 +26,21 @@ class Grid
   end
 
   def claimable_nodes
-    @nodes[0..6]
+    nodes = []
+    x = 0
+    while x < 7
+      bottom_node = column(x).first
+      nodes << bottom_node
+      x += 1
+    end
+    nodes
+  end
+
+  private
+
+  def column(x)
+    @nodes.select { |node| node.coords.x == x }.sort do |a, b|
+      a.coords.y - b.coords.y
+    end
   end
 end
