@@ -17,4 +17,17 @@ describe Grid do
       expect(generated_grid_is_uniq).to be true
     end
   end
+  describe '#claimable_nodes' do
+    subject(:new_grid) { described_class.new }
+    it 'returns an array' do
+      claimable_nodes = new_grid.claimable_nodes
+      data_type = claimable_nodes.class
+      expect(data_type).to be Array
+    end
+
+    it 'returns an array with length of 7 in a new grid' do
+      claimable_nodes = new_grid.claimable_nodes
+      expect(claimable_nodes.length).to eq(7)
+    end
+  end
 end
