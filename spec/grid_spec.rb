@@ -29,5 +29,11 @@ describe Grid do
       claimable_nodes = new_grid.claimable_nodes
       expect(claimable_nodes.length).to eq(7)
     end
+
+    it 'returns an array of nodes' do
+      claimable_nodes = new_grid.claimable_nodes
+      all_elements_are_nodes = claimable_nodes.all? { |node| node.instance_of?(Node) }
+      expect(all_elements_are_nodes).to be true
+    end
   end
 end
