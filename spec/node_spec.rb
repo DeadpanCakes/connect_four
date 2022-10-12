@@ -34,4 +34,33 @@ describe Node do
       expect(owner).to equal(player)
     end
   end
+  describe 'adjacent nodes' do
+    subject(:node) { described_class.new(3, 3) }
+    context 'in a fresh node' do
+      describe '#above' do
+        it 'returns nil' do
+          node_above = node.above
+          expect(node_above).to be_nil
+        end
+      end
+      describe '#below' do
+        it 'returns nil' do
+          node_below = node.below
+          expect(node_below).to be_nil
+        end
+      end
+      describe '#left' do
+        it 'returns nil' do
+          left_node = node.left
+          expect(left_node).to be_nil
+        end
+      end
+      describe '#right' do
+        it 'returns nil' do
+          right_node = node.right
+          expect(right_node).to be_nil
+        end
+      end
+    end
+  end
 end
