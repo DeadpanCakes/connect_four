@@ -35,5 +35,17 @@ describe Grid do
       all_elements_are_nodes = claimable_nodes.all? { |node| node.instance_of?(Node) }
       expect(all_elements_are_nodes).to be true
     end
+
+    it 'returns nodes whose y value is 0' do
+      claimable_nodes = new_grid.claimable_nodes
+      all_nodes_y_equals_zero = claimable_nodes.all? { |node| node.coords.y.zero? }
+      expect(all_nodes_y_equals_zero).to be true
+    end
+    it 'returns nodes whose x values are all uniq' do
+      claimable_nodes = new_grid.claimable_nodes
+      uniq_x_values = claimable_nodes.map { |node| node.coords.x }
+      all_nodes_x_uniq = claimable_nodes.length == uniq_x_values.length
+      expect(all_nodes_x_uniq).to be true
+    end
   end
 end
