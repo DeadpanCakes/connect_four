@@ -4,6 +4,12 @@ require './lib/node'
 
 # Tracks and manages the game grid
 class Grid
+  attr_reader :nodes
+
+  def initialize
+    @nodes = gen_nodes
+  end
+
   def gen_nodes
     nodes = []
     x = 0
@@ -17,5 +23,9 @@ class Grid
       y = 0
     end
     nodes
+  end
+
+  def claimable_nodes
+    [1, 2, 3, 4, 5, 6, 7]
   end
 end
