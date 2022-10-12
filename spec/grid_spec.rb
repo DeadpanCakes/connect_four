@@ -10,5 +10,11 @@ describe Grid do
       grid = empty_grid.gen_nodes
       expect(grid.length).to eq(42)
     end
+    it 'returns an array of 42 nodes with unique coords' do
+      init_grid = empty_grid.gen_nodes
+      uniq_grid = init_grid.uniq
+      generated_grid_is_uniq = uniq_grid == init_grid
+      expect(generated_grid_is_uniq).to be true
+    end
   end
 end
