@@ -18,34 +18,36 @@ describe Grid do
     end
   end
   describe '#claimable_nodes' do
-    subject(:new_grid) { described_class.new }
-    it 'returns an array' do
-      claimable_nodes = new_grid.claimable_nodes
-      data_type = claimable_nodes.class
-      expect(data_type).to be Array
-    end
+    context 'in a newly created grid' do
+      subject(:new_grid) { described_class.new }
+      it 'returns an array' do
+        claimable_nodes = new_grid.claimable_nodes
+        data_type = claimable_nodes.class
+        expect(data_type).to be Array
+      end
 
-    it 'returns an array with length of 7 in a new grid' do
-      claimable_nodes = new_grid.claimable_nodes
-      expect(claimable_nodes.length).to eq(7)
-    end
+      it 'returns an array with length of 7 in a new grid' do
+        claimable_nodes = new_grid.claimable_nodes
+        expect(claimable_nodes.length).to eq(7)
+      end
 
-    it 'returns an array of nodes' do
-      claimable_nodes = new_grid.claimable_nodes
-      all_elements_are_nodes = claimable_nodes.all? { |node| node.instance_of?(Node) }
-      expect(all_elements_are_nodes).to be true
-    end
+      it 'returns an array of nodes' do
+        claimable_nodes = new_grid.claimable_nodes
+        all_elements_are_nodes = claimable_nodes.all? { |node| node.instance_of?(Node) }
+        expect(all_elements_are_nodes).to be true
+      end
 
-    it 'returns nodes whose y value is 0' do
-      claimable_nodes = new_grid.claimable_nodes
-      all_nodes_y_equals_zero = claimable_nodes.all? { |node| node.coords.y.zero? }
-      expect(all_nodes_y_equals_zero).to be true
-    end
-    it 'returns nodes whose x values are all uniq' do
-      claimable_nodes = new_grid.claimable_nodes
-      uniq_x_values = claimable_nodes.map { |node| node.coords.x }
-      all_nodes_x_uniq = claimable_nodes.length == uniq_x_values.length
-      expect(all_nodes_x_uniq).to be true
+      it 'returns nodes whose y value is 0' do
+        claimable_nodes = new_grid.claimable_nodes
+        all_nodes_y_equals_zero = claimable_nodes.all? { |node| node.coords.y.zero? }
+        expect(all_nodes_y_equals_zero).to be true
+      end
+      it 'returns nodes whose x values are all uniq' do
+        claimable_nodes = new_grid.claimable_nodes
+        uniq_x_values = claimable_nodes.map { |node| node.coords.x }
+        all_nodes_x_uniq = claimable_nodes.length == uniq_x_values.length
+        expect(all_nodes_x_uniq).to be true
+      end
     end
   end
 end
