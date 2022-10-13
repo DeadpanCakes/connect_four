@@ -25,6 +25,15 @@ class Grid
     nodes
   end
 
+  def gen_graph
+    @nodes.each do |node|
+      node.above = find_node(node.coords.x, node.coords.y + 1)
+      node.below = find_node(node.coords.x, node.coords.y - 1)
+      node.left = find_node(node.coords.x - 1, node.coords.y)
+      node.right = find_node(node.coords.x + 1, node.coords.y)
+    end
+  end
+
   def claimable_nodes
     nodes = []
     x = 0
@@ -41,6 +50,12 @@ class Grid
   def column(x)
     @nodes.select { |node| node.coords.x == x }.sort do |a, b|
       a.coords.y - b.coords.y
+    end
+  end
+
+  def find_node(x, y)
+    @nodes.find do |node|
+      node.coords.x == x && node.coords.y == y
     end
   end
 end
