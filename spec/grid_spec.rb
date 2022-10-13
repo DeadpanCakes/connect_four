@@ -2,6 +2,7 @@
 
 require './lib/grid'
 require './lib/node'
+require './lib/player'
 
 describe Grid do
   describe '#gen_nodes' do
@@ -64,6 +65,16 @@ describe Grid do
         nonexistant_node = bottom_left.left
         expect(nonexistant_node).to be_nil
       end
+    end
+  end
+  describe '#place_token' do
+    subject(:unclaimed_grid) { described_class.new }
+    let(:node) { double(Node) }
+    let(:player) { double(Player) }
+    it 'sends a signal to target node to mark itself as claimed' do
+      allow(node).to receive(:mark_claimed)
+      expect(node).to receive(:mark_claimed).once
+      unclaimed_grid.place_token(node, player)
     end
   end
   describe '#claimable_nodes' do
