@@ -45,6 +45,10 @@ class Grid
     nodes
   end
 
+  def place_token(node, player)
+    node.mark_claimed(player)
+  end
+
   private
 
   def column(x)
