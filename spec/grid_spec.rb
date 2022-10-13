@@ -17,6 +17,55 @@ describe Grid do
       expect(generated_grid_is_uniq).to be true
     end
   end
+  describe '#gen_graph' do
+    subject(:graphed_grid) { described_class.new }
+    before(:each) do
+      graphed_grid.gen_nodes
+      graphed_grid.gen_graph
+    end
+    context 'in a central node' do
+      it 'makes adjacent methods return a node' do
+        central_node = graphed_grid.nodes[20]
+        adjacent_node = central_node.right
+        expect(adjacent_node).to be_kind_of(Node)
+      end
+      it 'makes the right method return a node whose x coordinate is 1 greater' do
+        central_node = graphed_grid.nodes[20]
+        central_node_coords = central_node.coords
+        adjacent_node = central_node.right
+        adjacent_node_coords = adjacent_node.coords
+        expect(adjacent_node_coords.x).to eq(central_node_coords.x + 1)
+      end
+      it 'makes the left method return a node whose x coordinate is 1 lesser' do
+        central_node = graphed_grid.nodes[20]
+        central_node_coords = central_node.coords
+        adjacent_node = central_node.left
+        adjacent_node_coords = adjacent_node.coords
+        expect(adjacent_node_coords.x).to eq(central_node_coords.x - 1)
+      end
+      it 'makes the above method return a node whose y coordinate is 1 greater' do
+        central_node = graphed_grid.nodes[20]
+        central_node_coords = central_node.coords
+        adjacent_node = central_node.above
+        adjacent_node_coords = adjacent_node.coords
+        expect(adjacent_node_coords.y).to eq(central_node_coords.y + 1)
+      end
+      it 'makes the below method return a node whose y coordinate is 1 lesser' do
+        central_node = graphed_grid.nodes[20]
+        central_node_coords = central_node.coords
+        adjacent_node = central_node.below
+        adjacent_node_coords = adjacent_node.coords
+        expect(adjacent_node_coords.y).to eq(central_node_coords.y - 1)
+      end
+    end
+    context 'in an edge node' do
+      it 'makes adjacent methods return nil when adjacent node does not exist' do
+        bottom_left = graphed_grid.nodes.first
+        nonexistant_node = bottom_left.left
+        expect(nonexistant_node).to be_nil
+      end
+    end
+  end
   describe '#claimable_nodes' do
     context 'in a newly created grid' do
       subject(:new_grid) { described_class.new }
