@@ -109,5 +109,22 @@ describe Grid do
         expect(all_nodes_x_uniq).to be true
       end
     end
+    context 'in a grid partway through a game' do
+      subject(:mid_play_grid) { described_class.new }
+      let(:player) { double(Player) }
+      it 'returns only nodes which are not claimed' do
+        claimable_nodes = mid_play_grid.claimable_nodes
+        mid_play_grid.place_token(claimable_nodes.first, player)
+        all_nodes_are_unclaimed = mid_play_grid.claimable_nodes.all? { |node| node.owner.nil? }
+        expect(all_nodes_are_unclaimed).to be true
+      end
+      it 'returns one node for each column' do
+        claimable_nodes = mid_play_grid.claimable_nodes
+        mid_play_grid.place_token(claimable_nodes.first, player)
+        unclaimed_nodes = mid_play_grid.claimable_nodes
+        unclaimed_nodes_count = unclaimed_nodes.length
+        expect(unclaimed_nodes_count).to eq(7)
+      end
+    end
   end
 end
