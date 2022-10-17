@@ -38,7 +38,8 @@ class Grid
     nodes = []
     x = 0
     while x < 7
-      bottom_node = column(x).first
+      target_column = column(x)
+      bottom_node = lowest_unclaimed(target_column)
       nodes << bottom_node
       x += 1
     end
@@ -55,6 +56,10 @@ class Grid
     @nodes.select { |node| node.coords.x == x }.sort do |a, b|
       a.coords.y - b.coords.y
     end
+  end
+
+  def lowest_unclaimed(column)
+    column.filter { |node| node.owner.nil? }.first
   end
 
   def find_node(x, y)
