@@ -9,6 +9,7 @@ class Game
     @players = []
     populate_players
     @grid = Grid.new
+    @turn = 1
   end
 
   private
