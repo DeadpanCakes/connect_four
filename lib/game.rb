@@ -7,14 +7,18 @@ require './lib/grid'
 class Game
   def initialize
     @players = []
-    puts 'Player 1'
-    @players << Player.new(prompt_for_name, 'red')
-    puts 'Player 2'
-    @players << Player.new(prompt_for_name, 'yellow')
+    populate_players
     @grid = Grid.new
   end
 
   private
+
+  def populate_players
+    puts 'Player 1'
+    @players << Player.new(prompt_for_name, 'red')
+    puts 'Player 2'
+    @players << Player.new(prompt_for_name, 'yellow')
+  end
 
   def prompt_for_name
     puts 'What Is Your Name?'
