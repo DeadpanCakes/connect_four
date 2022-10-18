@@ -1,6 +1,7 @@
 # frozen_string_literal: false
 
 require './lib/player'
+require './lib/grid'
 
 # Sets up Game and managaes flow
 class Game
@@ -10,6 +11,7 @@ class Game
     @players << Player.new(prompt_for_name, 'red')
     puts 'Player 2'
     @players << Player.new(prompt_for_name, 'yellow')
+    @grid = Grid.new
   end
 
   private
