@@ -8,6 +8,7 @@ class Grid
 
   def initialize
     @nodes = gen_nodes
+    gen_graph
   end
 
   def gen_nodes
