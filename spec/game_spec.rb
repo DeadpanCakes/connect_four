@@ -38,6 +38,18 @@ describe Game do
         victor = complete_match.find_victor
         expect(victor).to be winner
       end
+      it 'returns the winner when 4 nodes match vertically' do
+        first = complete_match.grid.claimable_nodes[0]
+        complete_match.grid.place_token(first, winner)
+        second = complete_match.grid.claimable_nodes[0]
+        complete_match.grid.place_token(second, winner)
+        third = complete_match.grid.claimable_nodes[0]
+        complete_match.grid.place_token(third, winner)
+        fourth = complete_match.grid.claimable_nodes[0]
+        complete_match.grid.place_token(fourth, winner)
+        victor = complete_match.find_victor
+        expect(victor).to be winner
+      end
     end
   end
 end
